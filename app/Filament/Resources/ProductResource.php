@@ -37,6 +37,7 @@ class ProductResource extends Resource
                 SpatieMediaLibraryFileUpload::make('gallery')
                     ->collection('gallery')
                     ->multiple()
+                    ->panelLayout('grid')
                     ->columnSpanFull(),
 
                 // tags input for product
@@ -49,9 +50,9 @@ class ProductResource extends Resource
                     ->label('Product Name'),
                 TextInput::make('sku')
                     ->label('SKU')
-                    ->unique(),
+                    ->unique(ignoreRecord:true), // if the value is not changed, then don't make it unique, so other input values can updated without getting error of unique input value
                 TextInput::make('slug')
-                    ->unique(),
+                    ->unique(ignoreRecord:true),
                 TextInput::make('stock')
                     ->numeric()
                     ->default(0),
@@ -78,7 +79,7 @@ class ProductResource extends Resource
                 TextColumn::make('slug'),
                 TextColumn::make('stock'),
                 TextColumn::make('price')
-                ->money('IDR', locale: 'id'),
+                    ->money('IDR', locale: 'id'),
             ])
             ->filters([
                 //
