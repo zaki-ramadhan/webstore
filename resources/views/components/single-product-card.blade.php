@@ -1,6 +1,6 @@
 <a class="flex flex-col bg-white group rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70"
     href="{{ route('product') }}">
-    <img class="object-cover rounded-md aspect-square"
+    <img class="object-cover rounded-2xl aspect-4/3"
         src="https://images.unsplash.com/photo-1546087513-2a2bc7fb6fa9?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt="Product Name">
     <div class="py-5">

@@ -2,15 +2,15 @@
 <footer class="w-full mt-auto bg-gray-900 dark:bg-neutral-950">
     <div class="mt-auto w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 lg:pt-20 mx-auto">
         <!-- Grid -->
-        <div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-3">
+        <div class="grid grid-cols-2 gap-12 md:grid-cols-3 lg:grid-cols-3">
             <div class="col-span-full lg:col-span-1">
                 <a class="flex-none text-xl font-semibold text-white focus:outline-hidden focus:opacity-80" href="#"
-                    aria-label="Brand">Brand</a>
-                <div class="my-5 text-gray-500 ">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores mollitia distinctio,
-                    doloribus,
-                    molestias numquam voluptatibus explicabo vel deserunt voluptates, quod minus itaque dolore in
-                    obcaecati? Quis laborum autem tempora porro?
+                    aria-label="Brand">Webstore</a>
+                <div class="my-5 text-gray-500">
+                    <strong>{{ config('app.name') }}</strong> is a modern webstore built for simple, secure shopping.
+                    Browse a curated catalog, check out with encrypted payments, and track your parcel in real time—from
+                    our door to yours.
+                    Trusted couriers, clear pricing, and easy returns for eligible items.
                 </div>
             </div>
             <!-- End Col -->

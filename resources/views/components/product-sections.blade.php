@@ -12,7 +12,7 @@
             <x-single-product-card />
         @endfor
     </div>
-    <div class="flex justify-center w-full mt-5">
+    <div class="flex justify-center w-full mt-12">
         <a href="{{ $url }}" class="flex items-center text-gray-700">
             <span class="border-b">
                 Show More Product
