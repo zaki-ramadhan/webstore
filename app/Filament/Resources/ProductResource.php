@@ -6,11 +6,14 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -25,34 +28,44 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
+                // main cover
+                SpatieMediaLibraryFileUpload::make('cover')
+                    ->collection('cover')
+                    ->columnSpanFull(),
+
+                // other / secondary images
+                SpatieMediaLibraryFileUpload::make('gallery')
+                    ->collection('gallery')
+                    ->multiple()
+                    ->columnSpanFull(),
+
+                // tags input for product
+                SpatieTagsInput::make('tags')
+                    ->type('category')
+                    ->label('Category')
+                    ->columnSpanFull(),
+
                 TextInput::make('name')
-                    ->label('Product Name')
-                    ->trim(),
+                    ->label('Product Name'),
                 TextInput::make('sku')
                     ->label('SKU')
-                    ->unique()
-                    ->trim(),
+                    ->unique(),
                 TextInput::make('slug')
-                    ->unique()
-                    ->trim(),
+                    ->unique(),
                 TextInput::make('stock')
                     ->numeric()
-                    ->trim()
                     ->default(0),
                 TextInput::make('price')
                     ->numeric()
-                    ->prefix('Rp')
-                    ->trim(),
+                    ->prefix('Rp'),
                 TextInput::make('weight')
                     ->numeric()
-                    ->suffix('gram')
-                    ->trim(),
+                    ->suffix('gram'),
                 Textarea::make('description')
                     ->minLength(5)
                     ->maxLength(255)
                     ->autosize()
                     ->columnSpanFull()
-                    ->trim()
             ]);
     }
 
@@ -60,7 +73,12 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name'),
+                TextColumn::make('sku'),
+                TextColumn::make('slug'),
+                TextColumn::make('stock'),
+                TextColumn::make('price')
+                ->money('IDR', locale: 'id'),
             ])
             ->filters([
                 //
