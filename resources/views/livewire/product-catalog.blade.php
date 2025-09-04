@@ -77,6 +77,9 @@
                         </div>
                     @endforelse
                 </div>
+                <div>
+                    {{ $products->links() }}
+                </div>
             </div>
         </div>
     </div>

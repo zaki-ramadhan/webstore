@@ -13,7 +13,7 @@ class ProductCatalog extends Component
         // Fetches a full collection of `Product` models with all their attributes.
         // This is "heavy" because it loads more data than is needed for the view,
         // which can impact performance on a large database.
-        $query = Product::all();
+        $query = Product::paginate(9);
 
         // The reasons for using a "DTO" for this project
         // 1. Clean code: It separates the data from the business logic.
