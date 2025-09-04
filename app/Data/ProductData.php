@@ -17,12 +17,14 @@ class ProductData extends Data
 
     public function __construct(
         public string $name,
+        public string $short_desc,
         public string $sku,
         public string $slug,
         public string|Optional|null $description,
         public int $stock,
         public float $price,
         public int $weight,
+        public string $cover_url
     ) {
         // Formats the product's price as a currency string.
         $this->price_formatted = Number::currency($price, 'IDR', 'id', 0);
@@ -32,12 +34,14 @@ class ProductData extends Data
     {
         return new self(
             $product->name,
+            $product->tags()->where('type', 'category')->pluck('name')->implode(', '), // Get all tags of type 'category', then list their names as a comma-separated string.
             $product->sku,
             $product->slug,
             $product->description,
             $product->stock,
             floatval($product->price),
             $product->weight,
+            $product->getFirstMediaUrl('cover'), /// use helper getFirstMediaUrl() from 'InteractsWithMedia' to get the cover collection's url
         );
     }
 }
