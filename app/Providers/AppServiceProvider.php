@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Product;
+use Illuminate\Support\Number;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
     {
         // allow mass assignment for product model
         Product::unguard();
+        Number::useCurrency('IDR');
     }
 }
