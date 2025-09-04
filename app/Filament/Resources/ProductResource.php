@@ -42,8 +42,8 @@ class ProductResource extends Resource
 
                 // tags input for product
                 SpatieTagsInput::make('tags')
-                    ->type('category')
-                    ->label('Category')
+                    ->type('collection')
+                    ->label('Collection')
                     ->columnSpanFull(),
 
                 TextInput::make('name')

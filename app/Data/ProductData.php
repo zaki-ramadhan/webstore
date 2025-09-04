@@ -34,7 +34,7 @@ class ProductData extends Data
     {
         return new self(
             $product->name,
-            $product->tags()->where('type', 'category')->pluck('name')->implode(', '), // Get all tags of type 'category', then list their names as a comma-separated string.
+            $product->tags()->where('type', 'collection')->pluck('name')->implode(', '), // Get all tags of type 'collection', then list their names as a comma-separated string.
             $product->sku,
             $product->slug,
             $product->description,
