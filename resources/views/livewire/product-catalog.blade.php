@@ -3,12 +3,25 @@
         <div class="grid grid-cols-1 gap-10 pr-6 border-r border-gray-200 md:col-span-3">
             <div>
                 <div class="space-y-3">
-                    <input type="text" placeholder="Search" wire:model="search" wire:keydown.enter="applyFilters"
-                        class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                    <input type="text" placeholder="Search..." wire:model="search" wire:change="search"
+                        wire:keydown.enter="applyFilters" @class([
+                            // default input classes
+                            'peer sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600',
+                        
+                            // error input classes
+                            'bg-red-50/80 border-red-500 text-red-600 focus:text-black focus:bg-white' => $errors->has(
+                                'search'),
+                        ])>
+                    @error('search')
+                        <div class="text-xs text-red-500 peer-focus:hidden">{{ $message }}</div>
+                    @enderror
                 </div>
                 <span class="block mt-5 mb-2 text-lg font-semibold text-gray-800 dark:text-neutral-200">
                     Collections
                 </span>
+                @error('select_collections.*')
+                    <div class="text-xs text-red-500">{{ $message }}</div>
+                @enderror
                 <div class="block space-y-4">
                     @foreach ($collections as $i => $item)
                         <div class="flex items-center justify-between">
@@ -69,12 +82,18 @@
         </div>
         <div class="col-span-1 md:col-span-7">
             <div class="flex items-center justify-between gap-5">
-                <div class="font-light text-gray-800">Results: {{ $products->total() }} Items</div>
+                <div class="font-light text-gray-800">
+                    Results: {{ $products ? $products->total() : 0 }} Items
+                </div>
+
                 <div class="flex items-center gap-2">
-                    <span class="text-sm font-light text-gray-800 dark:text-neutral-200">
+                    <span class="flex flex-col items-end text-sm font-light mr-2 text-gray-800 dark:text-neutral-200">
                         Sort By :
+                        @error('sort_by')
+                            <div class="text-xs text-red-500">{{ $message }}</div>
+                        @enderror
                     </span>
-                    <select wire:model="sort_by" wire:change="applyFilters"
+                    <select wire:model="sort_by"
                         class="px-3 py-2 text-sm border-gray-200 rounded-lg pe-9 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
                         <option value="newest">Newest Products</option>
                         <option value="oldest">Oldest Products</option>
@@ -95,9 +114,11 @@
                     </div>
                 @endforelse
             </div>
-            <div>
-                {{ $products->links() }}
-            </div>
+            @if ($products)
+                <div>
+                    {{ $products->links() }}
+                </div>
+            @endif
         </div>
     </div>
 </main>
