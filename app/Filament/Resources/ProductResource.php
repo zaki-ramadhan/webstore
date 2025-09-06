@@ -6,9 +6,9 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\SpatieTagsInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -62,10 +62,9 @@ class ProductResource extends Resource
                 TextInput::make('weight')
                     ->numeric()
                     ->suffix('gram'),
-                Textarea::make('description')
+                MarkdownEditor::make('description')
                     ->minLength(5)
-                    ->maxLength(255)
-                    ->autosize()
+                    ->maxLength(1300)
                     ->columnSpanFull()
             ]);
     }
