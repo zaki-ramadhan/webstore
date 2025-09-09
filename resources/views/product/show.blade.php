@@ -3,17 +3,13 @@
         <div class="grid grid-cols-1 gap-10 my-5 md:grid-cols-10">
             <div class="grid grid-cols-1 gap-2 md:col-span-7">
                 <div class="w-full">
-                    <img src={{ $product->cover_url }}
-                        alt="Cover" class="object-cover w-full rounded-2xl aspect-3/2 md:col-span-3">
+                    <img src={{ $product->cover_url }} alt="{{ $product->name }} Cover"
+                        class="object-cover w-full rounded-2xl aspect-3/2 md:col-span-3">
                     <div class="grid grid-cols-1 gap-2 my-2 md:grid-cols-3 md:col-span-7">
-                        <img src="https://images.unsplash.com/photo-1569097941209-aca563eb07d8?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="image-1" class="object-cover rounded-2xl aspect-square" />
-                        <img src="https://images.unsplash.com/photo-1569097941209-aca563eb07d8?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="image-1" class="object-cover rounded-2xl aspect-square" />
-                        <img src="https://images.unsplash.com/photo-1569097941209-aca563eb07d8?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="image-1" class="object-cover rounded-2xl aspect-square" />
-                        <img src="https://images.unsplash.com/photo-1569097941209-aca563eb07d8?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="image-1" class="object-cover rounded-2xl aspect-square" />
+                        @foreach ($product->gallery as $key => $image)
+                            <img src="{{ $image }}" alt="image-{{ $key }}"
+                                class="object-cover rounded-2xl aspect-square" />
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -82,7 +78,7 @@
                 <div>
                     <h3 class="font-semibold">Description</h3>
                     <div class="my-2 prose text-gray-800 dark:text-neutral-200">
-                        <p>{!! str($product->description)->markdown()->sanitizeHtml()  !!}</p>
+                        <p>{!! str($product->description)->markdown()->sanitizeHtml() !!}</p>
                     </div>
                 </div>
             </div>

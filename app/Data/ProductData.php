@@ -24,13 +24,14 @@ class ProductData extends Data
         public int $stock,
         public float $price,
         public int $weight,
-        public string $cover_url
+        public string $cover_url,
+        public Optional|array $gallery = new Optional() // there's page which don't need to show the gallery
     ) {
         // Formats the product's price as a currency string.
         $this->price_formatted = Number::currency($price, 'IDR', 'id', 0);
     }
 
-    public static function fromModel(Product $product): self
+    public static function fromModel(Product $product, bool $with_gallery = false): self
     {
         return new self(
             $product->name,
@@ -42,6 +43,7 @@ class ProductData extends Data
             floatval($product->price),
             $product->weight,
             $product->getFirstMediaUrl('cover'), /// use helper getFirstMediaUrl() from 'InteractsWithMedia' to get the cover collection's url
+            gallery: $with_gallery ? $product->getMedia('gallery')->map(fn($record) => $record->getUrl())->toArray() : new Optional()
         );
     }
 }

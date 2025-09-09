@@ -7,7 +7,7 @@
         <h3 class="text-lg font-bold text-gray-800 dark:text-white">
             {{ $product->name }}
         </h3>
-        <span class="text-sm text-gray-500">
+        <span class="text-sm text-gray-500 line-clamp-1">
             {{ $product->short_desc }}
         </span>
         <p class="mt-1 font-semibold text-black dark:text-black">
