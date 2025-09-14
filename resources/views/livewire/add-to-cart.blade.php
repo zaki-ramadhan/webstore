@@ -33,10 +33,9 @@
                     </button>
                 </div>
             </div>
-            <button type="button" wire:click="addToCart"
-                class="inline-flex items-center justify-center w-full px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg cursor-pointer gap-x-2 hover:bg-blue-700 focus:outline-hidden focus:bg-blue-800 disabled:opacity-50 disabled:pointer-events-none">
-                Add To Cart
-                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            <button type="button" wire:loading.attr="disabled" wire:click="addToCart" wire:loading.class="bg-blue-300"
+                class="inline-flex items-center justify-center w-full px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg cursor-pointer gap-x-2 hover:bg-blue-700 active:outline-hidden active:bg-blue-800 disabled:opacity-50 disabled:pointer-events-none">
+                <svg wire:target="addToCart" wire:loading.remove class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
                     <path d="m5 11 4-7"></path>
@@ -47,6 +46,21 @@
                     <path d="M4.5 15.5h15"></path>
                     <path d="m15 11-1 9"></path>
                 </svg>
+
+                <span wire:target="addToCart" wire:loading class="flex justify-center items-center">
+                    {{-- loading spinner by preline ui --}}
+                    <span
+                        class="animate-spin inline-block translate-y-0.5 mr-1 size-4 border-2 border-current border-t-transparent text-white rounded-full dark:text-white"
+                        role="status" aria-label="loading">
+                    </span>
+                    <span class="-translate-y-10">
+                        Loading...
+                    </span>
+                </span>
+
+                <span wire:target="addToCart" wire:loading.remove>
+                    {{ $label }}
+                </span>
             </button>
         </div>
     </div>
