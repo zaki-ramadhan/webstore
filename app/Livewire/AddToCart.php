@@ -47,6 +47,8 @@ class AddToCart extends Component
 
         // send event
         $this->dispatch('cart-updated');
+
+        return redirect()->to('cart');
     }
 
     public function render()
