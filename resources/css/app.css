@@ -14,4 +14,23 @@
 
 @theme {
     --font-sans: 'DM Sans', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --animate-slide-in-out: slide-in-out 4s ease-in-out;
+    
+    @keyframes slide-in-out {
+        0%, 100% {
+            top: -100%;
+            transform: scale(20%);
+            opacity: 0;
+        }
+        20%, 80% {
+            top: 1rem;
+            transform: scale(100%);
+            opacity: 1;
+        }
+    }
+}
+
+.alert {
+    @apply fixed -top-full left-1/2 -translate-x-1/2 animate-slide-in-out;
 }
