@@ -4,31 +4,32 @@
             <h1 class="mb-10 text-2xl font-light">Shopping Bag</h1>
             <div class="grid gap-5">
                 @forelse ($items as $item)
-                    <div class="flex items-start gap-5 border-b border-gray-200">
+                    <div class="flex gap-5 border-b border-gray-200">
                         <div class="relative size-40 overflow-hidden rounded-xl">
-                            <img class="object-coversize-full"
-                                src="{{ $item->product()->cover_url }}"
+                            <img class="object-coversize-full" src="{{ $item->product()->cover_url }}"
                                 alt="Product {{ $item->sku }}">
                         </div>
 
-                            <div>
-                                <h2 class="text-lg font-bold text-gray-800 dark:text-white">
-                                    {{ $item->product()->name }}
-                                </h2>
+                        <div>
+                            <h2 class="text-lg font-bold text-gray-800 dark:text-white">
+                                {{ $item->product()->name }}
+                            </h2>
 
-                                <h4 class="text-sm text-gray-800">{{ $item->product()->short_desc }}</h4>
+                            <h4 class="text-sm text-gray-800">{{ $item->product()->short_desc }}</h4>
 
-                                <div class="flex items-center gap-3 my-5">
-                                    <livewire:add-to-cart wire:key="add-to-cart-{{ $item->sku }}" :product="$item->product()"/>
+                            <div class="flex items-center gap-3 my-5">
+                                <livewire:add-to-cart wire:key="add-to-cart-{{ $item->sku }}" :product="$item->product()" />
 
-                                    <p class="inline -mt-6 px-3 text-xl font-semibold text-black dark:text-black">
-                                        {{ $item->product()->price_formatted }}
-                                    </p>
-                                </div>
+                                <p class="inline -mt-6 px-3 text-xl font-semibold text-black dark:text-black">
+                                    {{ $item->product()->price_formatted }}
+                                </p>
+
+                                <livewire:cart-item-remove :product="$item->product()" />
                             </div>
+                        </div>
                     </div>
                 @empty
-                    <div>No Product</div>
+                    <div class="w-full h-auto aspect-video md:aspect-5/2 -mt-3 border-[1.35px] border-red-300 rounded-2xl flex items-center justify-center text-red-500 font-medium bg-red-50/70">No Product</div>
                 @endforelse
             </div>
         </div>
