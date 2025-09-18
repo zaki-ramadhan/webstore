@@ -14,17 +14,17 @@
                             <h2 class="text-lg font-bold text-gray-800 dark:text-white">
                                 {{ $item->product()->name }}
                             </h2>
-
                             <h4 class="text-sm text-gray-800">{{ $item->product()->short_desc }}</h4>
 
                             <div class="flex items-center gap-3 my-5">
                                 <livewire:add-to-cart wire:key="add-to-cart-{{ $item->sku }}" :product="$item->product()" />
 
-                                <p class="inline -mt-6 px-3 text-xl font-semibold text-black dark:text-black">
-                                    {{ $item->product()->price_formatted }}
-                                </p>
-
-                                <livewire:cart-item-remove :product="$item->product()" />
+                                <div class="py-5 flex items-start self-stretch">
+                                    <p class="inline py-1.5 px-3 text-xl font-semibold text-black dark:text-black">
+                                        {{ $item->product()->price_formatted }}
+                                    </p>
+                                    <livewire:cart-item-remove :product="$item->product()" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -36,6 +36,7 @@
             </div>
         </div>
 
+        {{-- order summary --}}
         <div class="md:col-span-3">
             <h1 class="mb-5 text-2xl font-light">Order Summary</h1>
             <div class="grid gap-5">
