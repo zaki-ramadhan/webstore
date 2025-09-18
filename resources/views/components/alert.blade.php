@@ -3,9 +3,9 @@
     'message' => session('success') ?? (session('error') ?? ''),
 
     // classes
-    'successClasses' => 'bg-green-100 text-green-800',
-    'errorClasses' => 'bg-red-100 text-red-800',
-    'infoClasses' => 'bg-gray-100 text-gray-800',
+    'successClass' => 'text-green-500',
+    'errorClass' => 'text-red-500',
+    'infoClass' => 'text-gray-500',
 
     // icons
     'successIcon' => 'ep:success-filled',
@@ -22,8 +22,11 @@
             <iconify-icon
                 :icon="type === 'success' ? @js($successIcon) : (type === 'error' ? @js($errorIcon) :
                     @js($infoIcon))"
-                width="20" height="20" class="text-green-500">
+                width="20" height="20"
+                :class="type === 'success' ? @js($successClass) : (type === 'error' ? @js($errorClass) :
+                    @js($infoClass))">
             </iconify-icon>
+
 
 
             <h5 class="font-medium text-gray-900 text-sm">
@@ -49,7 +52,3 @@
         </div>
     </div>
 @endif
-
-<div>
-    <!-- I have not failed. I've just found 10,000 ways that won't work. - Thomas Edison -->
-</div>

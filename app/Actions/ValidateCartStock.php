@@ -43,7 +43,7 @@ class ValidateCartStock
         if ($insufficient) {
             // Throw a ValidationException so Laravel will handle it as a validation error
             throw ValidationException::withMessages([
-                'cart' => 'Some products have insufficient stock',
+                'cart' => 'Oops! A few products don’t have enough stock',
                 'details' => $insufficient
             ]);
         }
