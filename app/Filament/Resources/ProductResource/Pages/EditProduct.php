@@ -16,4 +16,11 @@ class EditProduct extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    // After saving or updating, redirect user
+    protected function getRedirectUrl(): string
+    {
+        // Redirect ke halaman index
+        return $this->getResource()::getUrl('index');
+    }
 }
