@@ -29,7 +29,9 @@
                         </div>
                     </div>
                 @empty
-                    <div class="w-full h-auto aspect-video md:aspect-5/2 -mt-3 border-[1.35px] border-red-300 rounded-2xl flex items-center justify-center text-red-500 font-medium bg-red-50/70">No Product</div>
+                    <div
+                        class="w-full h-auto aspect-video md:aspect-5/2 -mt-3 border-[1.35px] border-red-300 rounded-2xl flex items-center justify-center text-red-500 font-medium bg-red-50/70">
+                        No Product</div>
                 @endforelse
             </div>
         </div>
@@ -62,9 +64,22 @@
                     </li>
                 </ul>
                 <!-- End List Group -->
-                <button type="button" onclick="window.location.href='/checkout'"
+                <button type="button" wire:click="checkout" wire:target="checkout" wire:loading.attr="disabled"
                     class="inline-flex items-center justify-center w-full px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg cursor-pointer gap-x-2 hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-                    Checkout Now
+                    <span wire:target="checkout" wire:loading class="flex justify-center items-center">
+                        {{-- loading spinner by preline ui --}}
+                        <span
+                            class="animate-spin inline-block translate-y-0.5 mr-1 size-4 border-3 border-current border-t-transparent text-white rounded-full dark:text-white"
+                            role="status" aria-label="loading">
+                        </span>
+                        <span class="-translate-y-10">
+                            Checking Out...
+                        </span>
+                    </span>
+
+                    <span wire:target="checkout" wire:loading.remove>
+                        Checkout Now
+                    </span>
                 </button>
             </div>
         </div>

@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Models\Product;
 use Livewire\Component;
 use App\Data\ProductData;
+use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 use App\Data\ProductCollectionData;
 
@@ -14,9 +15,13 @@ class ProductCatalog extends Component
 
     use WithPagination; // add this to use resetPage() and pagination()
 
+    #[Url(as: 'collections', except: [])]
     public array $select_collections = [];
+
+    #[Url(as: 's')]
     public string $search = '';
 
+    #[Url(except: 'newest')] 
     public string $sort_by = 'newest'; // oldest, price_asc, price_desc,newest(default)
 
     // validation rules
@@ -35,11 +40,11 @@ class ProductCatalog extends Component
     }
 
     // use this livewire helper to sync these values with the URL query string
-    public $queryString = [
-        'select_collections' => ['except' => []], // exclude if empty
-        'search' => ['except' => ''],
-        'sort_by' => ['except' => 'newest']       // 'newest' is default, so skip in URL
-    ];
+    // public $queryString = [
+    //     'select_collections' => ['except' => []], // exclude if empty
+    //     'search' => ['except' => ''],
+    //     'sort_by' => ['except' => 'newest']       // 'newest' is default, so skip in URL
+    // ];
 
 
     public function applyFilters()
