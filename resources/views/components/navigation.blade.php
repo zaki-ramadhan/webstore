@@ -5,7 +5,9 @@
         class="relative max-w-[85rem] w-full md:flex md:items-center md:justify-between md:gap-3 mx-auto px-4 sm:px-6 lg:px-8 py-2 dark:bg-neutral-900">
         <!-- Logo w/ Collapse Button -->
         <div class="flex items-center justify-between">
-            <a href="{{ url('/') }}" title="Homepage" class="flex-none text-xl font-semibold text-black focus:outline-hidden focus:opacity-80 dark:text-white" aria-label="Brand">{{ config('app.name') }}
+            <a href="{{ url('/') }}" title="Homepage"
+                class="flex-none text-xl font-semibold text-black focus:outline-hidden focus:opacity-80 dark:text-white"
+                aria-label="Brand">{{ config('app.name') }}
             </a>
 
             <!-- Collapse Button -->
@@ -43,14 +45,27 @@
                 <div class="py-2 md:py-0 flex flex-col md:flex-row md:items-center md:justify-end gap-0.5 md:gap-1">
                     <a href="/" class="{{ request()->is('/') ? 'navlink--active' : 'navlink' }}"
                         aria-current="{{ request()->is('/') ? 'page' : '' }}">
+                        <svg class="block shrink-0 size-4 me-3 md:me-2 md:hidden" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+                            <path
+                                d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        </svg>
                         Home
                     </a>
+
                     <a href="{{ route('product-catalog') }}"
                         class="{{ request()->is('products') ? 'navlink--active' : 'navlink' }}"
                         aria-current="{{ request()->is('products') ? 'page' : '' }}">
+                        <svg class="block shrink-0 size-4 me-3 md:me-2 md:hidden" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shirt">
+                            <path
+                                d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" />
+                        </svg>
                         Collection
                     </a>
-
 
                     <livewire:cart-count />
                 </div>
