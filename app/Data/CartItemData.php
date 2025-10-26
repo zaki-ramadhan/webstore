@@ -6,6 +6,7 @@ namespace App\Data;
 
 use App\Models\Product;
 use App\Data\ProductData;
+use Illuminate\Support\Number;
 use Spatie\LaravelData\Data;
 use Livewire\Attributes\Computed;
 
@@ -17,6 +18,11 @@ class CartItemData extends Data
         public float $price,
         public int $weight,
     ) {}
+
+    #[Computed()]
+    public function calculatedTotalFormatted() {
+        return Number::currency($this->price * $this->quantity, 'IDR', 'id', 0);
+    }
 
     #[Computed()]
     public function product(){

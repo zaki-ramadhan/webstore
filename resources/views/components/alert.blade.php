@@ -17,7 +17,7 @@
 
     <div x-data="{ open: true, type: @js($type) }" class="alert">
         <div x-show="open" x-transition
-            class="max-w-fit flex justify-center items-center py-3 px-4 bg-white rounded-xl border border-gray-200 shadow-sm mb-4 gap-2">
+            class="max-w-fit flex justify-center items-center py-2.5 px-3 bg-white rounded-full border border-gray-200/90 shadow-md shadow-gray-200/70 mb-4 gap-2">
 
             <iconify-icon
                 :icon="type === 'success' ? @js($successIcon) : (type === 'error' ? @js($errorIcon) :
@@ -47,7 +47,7 @@
 
             <button @click="open = false" type="button"
                 class="inline-flex ml-4 flex-shrink-0 justify-center text-gray-400 cursor-pointer hover:text-gray-600">
-                <iconify-icon icon="material-symbols:close" width="20" height="20"></iconify-icon>
+                <iconify-icon icon="material-symbols:close" width="18" height="18"></iconify-icon>
             </button>
         </div>
     </div>
