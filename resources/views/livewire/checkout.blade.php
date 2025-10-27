@@ -62,10 +62,16 @@
                     @enderror
                     <div>
                         <div x-data="{ open: false }" class="relative w-full">
-                            <input type="text" wire:model.live.debounce.500ms="region_selector.keyword"
-                                @focus="open = true" @click.outside="open = false"
-                                class="@error('data.destination_region_code') border-red-600 @enderror sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-default dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Find location">
+                            <div class="relative">
+                                <input type="text" wire:model.live.debounce.500ms="region_selector.keyword"
+                                    @focus="open = true" @click.outside="open = false"
+                                    class="@error('data.destination_region_code') border-red-600 @enderror sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-default dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                    placeholder="Search Location">
+                                <span wire:loading wire:target="region_selector.keyword"
+                                    class="animate-spin absolute top-1/2 right-4 -translate-y-1/2 mr-1 size-4 border-2 border-current border-t-transparent text-blue-400 rounded-full dark:text-blue-500"
+                                    role="status" aria-label="loading">
+                                </span>
+                            </div>
 
                             @if ($this->regions->toCollection()->isNotEmpty())
                                 <ul class="absolute z-10 w-full mt-2 overflow-y-auto bg-white border border-gray-200 rounded-lg max-h-60 shadow-xl"

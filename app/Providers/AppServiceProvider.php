@@ -9,6 +9,7 @@ use App\Actions\ValidateCartStock;
 use App\Services\SessionCartService;
 use Illuminate\Support\Facades\Gate;
 use App\Contract\CartServiceInterface;
+use App\Services\RegionQueryService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\ValidationException;
 
@@ -22,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
         // add this to make load method works
         // add new binding to enable anywhere the app needs cart service interface then resolve it by giving concrete class
         $this->app->bind(CartServiceInterface::class, SessionCartService::class);
+
+        $this->app->bind(RegionQueryService::class, RegionQueryService::class);
     }
 
     /**
